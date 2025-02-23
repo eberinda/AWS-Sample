@@ -2,6 +2,19 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS.Sample.API", "AWS.Sample.API\AWS.Sample.API.csproj", "{1DDAF9DC-5EFD-4226-BE03-4614767B5172}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS.Sample.Application", "AWS.Sample.Application\AWS.Sample.Application.csproj", "{76AE655B-EBCF-4F2E-9235-A1BD8D43C5C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS.Sample.Infrastructure", "AWS.Sample.Infrastructure\AWS.Sample.Infrastructure.csproj", "{E7A3B10F-854D-4F3C-A038-0D737B83A43E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS.Sample.Domain", "AWS.Sample.Domain\AWS.Sample.Domain.csproj", "{C9ADCB23-8275-4E46-8C1F-FA5BF0D71635}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{00B8B725-3586-4EEA-A57C-F01BFAD06B1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OtherFiles", "OtherFiles", "{478A526A-5A3F-48F3-B518-5BC9A451FF80}"
+	ProjectSection(SolutionItems) = preProject
+		..\OtherFiles\migration-help.txt = ..\OtherFiles\migration-help.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +25,17 @@ Global
 		{1DDAF9DC-5EFD-4226-BE03-4614767B5172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DDAF9DC-5EFD-4226-BE03-4614767B5172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DDAF9DC-5EFD-4226-BE03-4614767B5172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76AE655B-EBCF-4F2E-9235-A1BD8D43C5C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76AE655B-EBCF-4F2E-9235-A1BD8D43C5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76AE655B-EBCF-4F2E-9235-A1BD8D43C5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76AE655B-EBCF-4F2E-9235-A1BD8D43C5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A3B10F-854D-4F3C-A038-0D737B83A43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A3B10F-854D-4F3C-A038-0D737B83A43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A3B10F-854D-4F3C-A038-0D737B83A43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A3B10F-854D-4F3C-A038-0D737B83A43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9ADCB23-8275-4E46-8C1F-FA5BF0D71635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9ADCB23-8275-4E46-8C1F-FA5BF0D71635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9ADCB23-8275-4E46-8C1F-FA5BF0D71635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9ADCB23-8275-4E46-8C1F-FA5BF0D71635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

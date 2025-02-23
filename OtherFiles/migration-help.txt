@@ -1,0 +1,2 @@
+Mac OS
+dotnet ef migrations add -p ./AWS.Sample.Infrastructure/ -c AWS.Sample.Infrastructure.Persistence.AWSDbContext --output-dir Persistence/Migrations --startup-project ./AWS.Sample.API/ [Migration Name]
