@@ -1,6 +1,8 @@
+using AWS.Sample.API.Infrastructure;
 using AWS.Sample.Application;
 using AWS.Sample.Infrastructure;
 using AWS.Sample.Infrastructure.Persistence;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddSerilogLogging(builder.Configuration);
+
+builder.Host.UseSerilog();
 
 var app = builder.Build();
 
@@ -19,6 +24,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseSerilogRequestLogging();
 
 app.MapControllers();
 
