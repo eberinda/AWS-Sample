@@ -8,7 +8,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: migrate
-          image: your-registry/your-repo:latest
+          image: 682033465707.dkr.ecr.eu-north-1.amazonaws.com/aws-sample:latest
           command: ["dotnet", "AWS.Sample.API.dll", "migrate"]
           env:
             - name: ConnectionStrings__DefaultConnection
