@@ -48,25 +48,25 @@ jobs:
       - name: Run Database Migrations
         run: |
           cat <<EOF | kubectl apply -f -
-          apiVersion: batch/v1
-          kind: Job
-          metadata:
-            name: migration-job
-          spec:
-            template:
-              spec:
-                restartPolicy: Never
-                containers:
-                  - name: migrate
-                    image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-                    command: ["dotnet", "AWS.Sample.API.dll", "migrate"]
-                    env:
-                      - name: ConnectionStrings__DefaultConnection
-                        valueFrom:
-                          secretKeyRef:
-                            name: postgres-secret
-                            key: connectionString
-          EOF
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migration-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          command: ["dotnet", "AWS.Sample.API.dll", "migrate"]
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: connectionString
+EOF
 
       - name: Check Environment Variables in Pod
         run: |
