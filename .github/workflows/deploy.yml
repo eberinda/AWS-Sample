@@ -45,6 +45,19 @@ jobs:
         run: |
           aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Claster
 
+      - name: Run Database Migrations
+        run: |
+          kubectl run migration-job --image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --restart=Never -- \
+            dotnet AWS.Sample.API.dll migrate
+
+      - name: Wait for Migration Job to Complete
+        run: |
+          kubectl wait --for=condition=complete --timeout=60s pod/migration-job || true
+
+      - name: Cleanup Migration Job
+        run: |
+          kubectl delete pod migration-job || true
+
       - name: Deploy to Kubernetes
         run: |
           kubectl set image deployment/aws-sample aws-sample=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
