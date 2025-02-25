@@ -43,7 +43,7 @@ jobs:
 
       - name: Update kubeconfig
         run: |
-          aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Cluster
+          aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Claster
 
       - name: Deploy to Kubernetes
         run: |
