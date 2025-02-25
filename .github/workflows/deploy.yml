@@ -46,6 +46,10 @@ jobs:
           aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Claster
 
       - name: Run Database Migrations
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: aws-sample
+          IMAGE_TAG: latest
         run: |
           kubectl run migration-job --image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --restart=Never -- \
             dotnet AWS.Sample.API.dll migrate
