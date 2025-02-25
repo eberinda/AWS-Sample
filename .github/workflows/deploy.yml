@@ -45,9 +45,9 @@ jobs:
         run: |
           aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Claster
 
-      - name: Apply Migration Job
+      - name: Run Migration Job
         run: |
-          kubectl apply -f infra/migration-job.yaml
+          kubectl apply -f devops/infra/migration-job.yaml
           kubectl wait --for=condition=complete --timeout=300s job/migration-job || kubectl logs job/migration-job
           kubectl delete job migration-job || true
 
