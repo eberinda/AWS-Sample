@@ -45,23 +45,15 @@ jobs:
         run: |
           aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Claster
 
+      - name: Check Environment Variables in Pod
+        run: |
+          kubectl exec deployment/aws-sample -- printenv | grep ConnectionStrings__DefaultConnection
+
       - name: Run Migration Job
         run: |
           kubectl apply -f devops/infra/migration-job.yaml
           kubectl wait --for=condition=complete --timeout=300s job/migration-job || kubectl logs job/migration-job
           kubectl delete job migration-job || true
-
-      - name: Check Environment Variables in Pod
-        run: |
-          kubectl exec deployment/aws-sample -- printenv | grep ConnectionStrings__DefaultConnection
-
-      - name: Wait for Migration Job to Complete
-        run: |
-          kubectl wait --for=condition=complete --timeout=300s pod/migration-job || kubectl logs migration-job
-
-      - name: Cleanup Migration Job
-        run: |
-          kubectl delete pod migration-job || true
 
       - name: Deploy to Kubernetes
         run: |
