@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Database Migrations
         run: |
-          cat <<EOF | kubectl apply -f -
+          kubectl apply -f - <<EOF
           apiVersion: batch/v1
           kind: Job
           metadata:
@@ -55,6 +55,7 @@ jobs:
           spec:
             template:
               spec:
+                restartPolicy: Never
                 containers:
                   - name: migrate
                     image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -65,7 +66,6 @@ jobs:
                           secretKeyRef:
                             name: postgres-secret
                             key: connectionString
-                restartPolicy: Never
           EOF
 
       - name: Check Environment Variables in Pod
