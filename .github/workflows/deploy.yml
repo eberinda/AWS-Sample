@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Database Migrations
         run: |
-          kubectl apply -f - <<EOF
+          cat <<EOF | kubectl apply -f -
           apiVersion: batch/v1
           kind: Job
           metadata:
