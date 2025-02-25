@@ -45,28 +45,11 @@ jobs:
         run: |
           aws eks update-kubeconfig --region eu-north-1 --name EKS-eberinda-test-Claster
 
-      - name: Run Database Migrations
+      - name: Apply Migration Job
         run: |
-          cat <<EOF | kubectl apply -f -
-          apiVersion: batch/v1
-          kind: Job
-          metadata:
-            name: migration-job
-          spec:
-            template:
-              spec:
-                restartPolicy: Never
-                containers:
-                  - name: migrate
-                    image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-                    command: ["dotnet", "AWS.Sample.API.dll", "migrate"]
-                    env:
-                      - name: ConnectionStrings__DefaultConnection
-                        valueFrom:
-                          secretKeyRef:
-                            name: postgres-secret
-                            key: connectionString
-          EOF
+          kubectl apply -f infra/migration-job.yaml
+          kubectl wait --for=condition=complete --timeout=300s job/migration-job || kubectl logs job/migration-job
+          kubectl delete job migration-job || true
 
       - name: Check Environment Variables in Pod
         run: |
